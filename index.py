@@ -9,9 +9,7 @@ def handler(event, context):
     if number_to_cube < 0:
         return respond(ValueError("Sorry, cube does not exist for negative numbers"))
     elif number_to_cube == 0:
-        print("The cube of 0 is 0")
         return respond(None, create_response(0,0))
-
     elif number_to_cube > 9000:
         return respond(ValueError("Scouter says its over 9000. Too High"))
     else:
@@ -27,7 +25,6 @@ def respond (err, res=None):
 
 def create_response (number_to_cube, num_cubed) :
     data = {
-        'output': 'The cube of ' + number_to_cube + ' is ' + num_cubed,
+        'output': 'The cube of ' + number_to_cube + ' is ' + str(num_cubed),
         'timestamp': datetime.datetime.utcnow().isoformat()
-
     }
