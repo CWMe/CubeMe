@@ -7,20 +7,27 @@ def handler(event, context):
     number_to_cube = body['number_to_cube']
     # check if the number is negative, positive or zero
     if number_to_cube < 0:
-        print("Sorry, cube does not exist for negative numbers")
+        return respond(ValueError("Sorry, cube does not exist for negative numbers"))
     elif number_to_cube == 0:
         print("The cube of 0 is 0")
+        return respond(None, create_response(0,0))
+
     elif number_to_cube > 9000:
-        print("Scouter says its over 9000")
+        return respond(ValueError("Scouter says its over 9000. Too High"))
     else:
         num_cubed = number_to_cube ** 3
-        print("The cube of ", number_to_cube, "is", num_cubed)
+        return respond(None, create_response(number_to_cube,num_cubed))
 
+def respond (err, res=None):
+    return {
+        'statusCode': '400' if err else '200',
+        'body': err.message if err else json.dumps(res),
+        'headers': {'Content-Type': 'application/json'}
+    }
+
+def create_response (number_to_cube, num_cubed) :
     data = {
-        'output': 'The cube of ' + num + ' is ' + num_cubed ,
+        'output': 'The cube of ' + number_to_cube + ' is ' + num_cubed,
         'timestamp': datetime.datetime.utcnow().isoformat()
 
     }
-    return {'statusCode': 200,
-            'body': json.dumps(data),
-            'headers': {'Content-Type': 'application/json'}}
