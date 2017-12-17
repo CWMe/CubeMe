@@ -25,6 +25,6 @@ def respond (err, res=None):
 
 def create_response (number_to_cube, num_cubed) :
     data = {
-        'output': 'The cube of ' + number_to_cube + ' is ' + str(num_cubed),
+        'output': 'The cube of ' + str(number_to_cube) + ' is ' + str(num_cubed),
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
