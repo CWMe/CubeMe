@@ -1,8 +1,11 @@
-Welcome to the AWS CodeStar sample web service
+Welcome to the Cube Me Program!
 ==============================================
 
-This sample code helps get you started with a simple Python web service using
-AWS Lambda and Amazon API Gateway.
+This is a Python application deployed to AWS Lambda to be run as a serverless function, invoked by a RESTful endpoint exposed by API Gateway.  The deployment pipeline consists of AWS CodeBuild which packages the application with all of its dependencies and Cloudformation which deploys the application to Lambda and API Gateway. It will take a curl command entry and return the cube of the number.
+
+Curl Command:
+
+curl -XPOST 'https://dhlbfd98j6.execute-api.us-east-1.amazonaws.com/Prod/' -d '{"number_to_cube":90}'
 
 What's Here
 -----------
